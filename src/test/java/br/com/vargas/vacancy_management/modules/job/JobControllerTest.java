@@ -23,7 +23,7 @@ import br.com.vargas.vacancy_management.enums.LevelType;
 import br.com.vargas.vacancy_management.modules.company.entities.CompanyEntity;
 import br.com.vargas.vacancy_management.modules.company.repositories.CompanyRepository;
 import br.com.vargas.vacancy_management.modules.job.dto.CreateJobDTO;
-import br.com.vargas.vacancy_management.utils.TesteUtils;
+import br.com.vargas.vacancy_management.utils.TestUtils;
 
 
 @RunWith(SpringRunner.class)
@@ -67,13 +67,13 @@ public class JobControllerTest {
             .level(LevelType.JUNIOR)
             .build();   
         
-        String object = TesteUtils.objectToJson(createJobDTO).toString();
+        String object = TestUtils.objectToJson(createJobDTO).toString();
 
         mvc.perform(MockMvcRequestBuilders.post("/job/")
             .contentType(MediaType.APPLICATION_JSON)
             .content(object)
             .header("Authorization", 
-                TesteUtils.generateToken(company.getId(), secretKey)))
+                TestUtils.generateToken(company.getId(), secretKey)))
             .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
@@ -85,12 +85,12 @@ public class JobControllerTest {
             .level(LevelType.JUNIOR)
             .build();
         
-        String object = TesteUtils.objectToJson(createJobDTO).toString();
+        String object = TestUtils.objectToJson(createJobDTO).toString();
 
         mvc.perform(MockMvcRequestBuilders.post("/job/")
             .contentType(MediaType.APPLICATION_JSON)
             .content(object)
-            .header("Authorization", TesteUtils.generateToken(UUID.randomUUID(), secretKey)))
+            .header("Authorization", TestUtils.generateToken(UUID.randomUUID(), secretKey)))
             .andExpect(MockMvcResultMatchers.status().isBadRequest());
     
     }
