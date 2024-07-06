@@ -32,4 +32,4 @@ jobs:
             - name: Remove container
               run: docker rm -f vacancy_management
             - name: Run Docker container
-              run: docker run -d -p 8080:8080 -e DATABASE_URL=${{secrets.DATABASE_URL}} -e DATABASE_PASSWORD='${{secrets.DATABASE_PASSWORD}}' -e DATABASE_USERNAME=${{secrets.DATABASE_USERNAME}} -e TOKEN_SECRET_COMPANY=${{secrets.TOKEN_SECRET_COMPANY}} -e TOKEN_SECRET_CANDIDATE=${{secrets.TOKEN_SECRET_CANDIDATE}}--name vacancy_management dvargas42/vacancy_management
+              run: docker run -d -p 8080:8080 -e DATABASE_URL=${{secrets.DATABASE_URL}} -e DATABASE_PASSWORD='${{secrets.DATABASE_PASSWORD}}' -e DATABASE_USERNAME=${{secrets.DATABASE_USERNAME}} -e TOKEN_SECRET_COMPANY=${{secrets.TOKEN_SECRET_COMPANY}} -e TOKEN_SECRET_CANDIDATE=${{secrets.TOKEN_SECRET_CANDIDATE}} --name vacancy_management dvargas42/vacancy_management
