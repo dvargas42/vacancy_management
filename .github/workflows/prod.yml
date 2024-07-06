@@ -23,3 +23,13 @@ jobs:
               run: docker build -t dvargas42/vacancy_management .
             - name: Publish image
               run: docker push dvargas42/vacancy_management
+    deploy:
+        needs: build
+        runs-on: self-hosted
+        steps:
+            - name: Pull image Docker Hub
+              run: docker pull dvargas42/vacancy_management:latest
+            - name: Remove container
+              run: docker rm -f vacancy_management
+            - name: Run Docker container
+              run: docker run -d -p 8080:8080 -e DATABASE_URL=${{secrets.DATABASE_URL}} -e DATABASE_PASSWORD='${{secrets.DATABASE_PASSWORD}}' -e DATABASE_USERNAME=${{secrets.DATABASE_USERNAME}} --name vancancy_management dvargas42/vacancy_management
